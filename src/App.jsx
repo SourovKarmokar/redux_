@@ -1,9 +1,21 @@
+import { useState } from 'react'
 import './App.css'
 import Counter from './components/Counter'
 import Stats from './components/Stats'
 
+const initialCounters = [
+  {
+    id: 1,
+    value: 0 
+  },
+  {
+    id: 2,
+    value: 0 
+  },
+]
+
 function App() {
- 
+  const [counters, setCounters] = useState(initialCounters)
 
   return (
     <>
@@ -12,7 +24,9 @@ function App() {
           Simple Counter Application
         </h1>
         <div className='max-w-md mx-auto mt-10 space-y-5'>
-            <Counter/>
+            {counters.map((counter) =>(
+              <Counter key={counter.id}/>
+            ))}
             <Stats totalCount={10} />
             
         </div>
